@@ -5,11 +5,29 @@ function checkForShip(player, coordinates){
     ship = player.ships[i];
     shipPresent = ship.locations.filter(actualCoordinate => (actualCoordinate[0] === coordinates[0] && actualCoordinate[1] === coordinates[1]))[0];
     if (shipPresent){
-      return true;
+      return ship;
     }
   }
   return false;
 }
 
+function damageShip(ship, coordinates){
+  ship.damage.push(coordinates);
+}
+
+function fire(player, coordinates){
+  var ship = checkForShip(player, coordinates);
+
+  if(ship){
+    damageShip(ship, coordinates)
+  }
+}
+
+function r(){
+
+}
+
+
 module.exports.checkForShip = checkForShip
-//
+module.exports.damageShip = damageShip;
+module.exports.fire = fire;
